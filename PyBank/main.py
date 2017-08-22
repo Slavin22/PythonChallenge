@@ -5,6 +5,7 @@ csvpath = os.path.join('Resources', 'budget_data_1.csv')
 months = 0
 total = 0
 revenues = []
+changes = 0
 comp = 0
 increase = 0
 decrease = 0
@@ -26,15 +27,16 @@ with open(csvpath, newline = "") as csvfile:
 		months = months + 1
 		total = total + int(row[1])
 		revenues.append(int(row[1]))
+		changes = changes + (int(row[1]) - comp)
 		comp = int(row[1])
 
-average = int((revenues[months - 1] - revenues[0]) / (months - 1))
+avg = changes / int(months)
 
 print("Financial Analysis")
 print("----------------------------")
 print("Total Months: " + str(months))
 print("Total Revenue: $" + str(total))
-print("Average Revenue Change: $" + str(average))
+print("Average Revenue Change: $" + str(avg))
 print("Greatest Increase in Revenue: " + incmonth + " ($" + str(increase) + ")")
 print("Greatest Decrease in Revenue: " + decmonth + " ($" + str(decrease) + ")")
 
@@ -45,6 +47,6 @@ text.write("Financial Analysis" + "\n")
 text.write("----------------------------" + "\n")
 text.write("Total Months: " + str(months) + "\n")
 text.write("Total Revenue: $" + str(total) + "\n")
-text.write("Average Revenue Change: $" + str(average) + "\n")
+text.write("Average Revenue Change: $" + str(avg) + "\n")
 text.write("Greatest Increase in Revenue: " + incmonth + " ($" + str(increase) + ")" + "\n")
-text.write("Greatest Decrease in Revenue: " + decmonth + " ($" + str(decrease) + ")" + "\n")
+text.write("Greatest Decrease in Revenue: " + decmonth + " ($" + str(decrease) + ")")

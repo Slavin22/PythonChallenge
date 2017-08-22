@@ -1,6 +1,6 @@
 import os
 import csv
-csvpath = os.path.join('Resources', 'election_data_1.csv')
+csvpath = os.path.join('Resources', 'election_data_2.csv')
 
 total = 0
 candidates = []
@@ -47,5 +47,5 @@ for num in range(0, numcand):
 	text.write(candidates[num] + ": " + str(int((votes[num] / total) * 100)) + "% (" + str(votes[num]) + ")" + "\n")
 text.write("-------------------------" + "\n")
 text.write("Winner: " + winner + "\n")
-text.write("-------------------------" + "\n")
+text.write("-------------------------")
 

@@ -1,6 +1,6 @@
 import os
 import csv
-csvpath = os.path.join('Resources', 'employee_data1.csv')
+csvpath = os.path.join('Resources', 'employee_data2.csv')
 
 abbrev = {
     'Alabama': 'AL',
