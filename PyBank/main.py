@@ -1,7 +1,9 @@
+# Import Dependencies + load file-path
 import os
 import csv
 csvpath = os.path.join('Resources', 'budget_data_1.csv')
 
+# Establish variables + arrays
 months = 0
 total = 0
 revenues = []
@@ -12,11 +14,14 @@ decrease = 0
 incmonth = ""
 decmonth = ""
 
+# Read in CSV file
 with open(csvpath, newline = "") as csvfile:
 	csvreader = csv.reader(csvfile, delimiter = ',')
 
+	# Skip header row
 	next(csvreader, None)
 
+	# Loop through rows - collecting data
 	for row in csvreader:
 		if int(row[1]) - comp > increase:
 			increase = int(row[1]) - comp
@@ -30,8 +35,10 @@ with open(csvpath, newline = "") as csvfile:
 		changes = changes + (int(row[1]) - comp)
 		comp = int(row[1])
 
+# Calculate average revenue change
 avg = changes / int(months)
 
+# Print results to Terminal
 print("Financial Analysis")
 print("----------------------------")
 print("Total Months: " + str(months))
@@ -40,6 +47,7 @@ print("Average Revenue Change: $" + str(avg))
 print("Greatest Increase in Revenue: " + incmonth + " ($" + str(increase) + ")")
 print("Greatest Decrease in Revenue: " + decmonth + " ($" + str(decrease) + ")")
 
+# Print results to output file
 txtpath = os.path.join('Resources', 'BudgetDataTextFile.txt')
 
 text = open(txtpath, 'w')

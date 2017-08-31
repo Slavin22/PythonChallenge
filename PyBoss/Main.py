@@ -1,7 +1,9 @@
+# Import Dependencies + load file-path
 import os
 import csv
 csvpath = os.path.join('Resources', 'employee_data2.csv')
 
+# Load state abbreviation dictionary
 abbrev = {
     'Alabama': 'AL',
     'Alaska': 'AK',
@@ -55,6 +57,7 @@ abbrev = {
     'Wyoming': 'WY',
 }
 
+# Establish arrays
 empid = []
 firstname = []
 lastname = []
@@ -62,11 +65,14 @@ dob = []
 ssn = []
 state = []
 
+# Read in CSV file
 with open(csvpath, newline = "") as csvfile:
 	csvreader = csv.reader(csvfile, delimiter = ',')
 
+    # Skip header row
 	next(csvreader, None)
 
+    # Loop through rows - collect/convert necessary data
 	for row in csvreader:
 		empid.append(row[0])
 		id = row[1].split(" ")
@@ -78,8 +84,10 @@ with open(csvpath, newline = "") as csvfile:
 		ssn.append("***-**-" + social[2])
 		state.append(abbrev[row[4]])
 
+# Zip arrays together
 info = zip(empid, firstname, lastname, dob, ssn, state)
 
+# Write data to output file
 newpath = os.path.join('Resources', 'EmployeeDataTextFile.csv')
 with open(newpath, 'w') as newfile:
 	csvwriter = csv.writer(newfile, delimiter = ',')
